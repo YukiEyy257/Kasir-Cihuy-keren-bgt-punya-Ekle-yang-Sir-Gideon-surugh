@@ -1,0 +1,55 @@
+def kasir_cihuy():
+    print("✨" + "="*35 + "✨")
+    print("     🚀 KASIR CIHUY V.1.0 🚀     ")
+    print("   Belanja Senang, Hati Tenang   ")
+    print("✨" + "="*35 + "✨")
+    
+    total_belanja = 0
+    barang_list = []
+
+    while True:
+        nama_barang = input("\n📦 Barang apa yang dibeli? (ketik 'fix' jika sudah): ")
+        if nama_barang.lower() == 'fix':
+            break
+            
+        try:
+            harga = int(input(f"💰 Harga {nama_barang} satunya berapa? : Rp"))
+            jumlah = int(input(f"🔢 Beli berapa banyak {nama_barang}? : "))
+            
+            subtotal = harga * jumlah
+            total_belanja += subtotal
+            barang_list.append((nama_barang, harga, jumlah, subtotal))
+            print(f"✅ Oke, {nama_barang} masuk keranjang!")
+        except ValueError:
+            print("❌ Waduh, masukin angka yang bener dong harganya!")
+
+    # Tampilkan Ringkasan Belanja yang Cihuy
+    print("\n" + "🛒" + "-"*33 + "🛒")
+    print("        STRUK BELANJA CIHUY       ")
+    print("-" * 35)
+    for b in barang_list:
+        # Format: Nama (Jumlah x Harga) : Subtotal
+        print(f"• {b[0]} ({b[2]}x @{b[1]:,}) : Rp{b[3]:,}")
+    
+    print("-" * 35)
+    print(f"🔥 TOTAL YANG HARUS DIBAYAR: Rp{total_belanja:,}")
+    print("-" * 35)
+
+    # Proses Pembayaran
+    while True:
+        try:
+            bayar = int(input("\n💸 Uang yang dibayar pelanggan: Rp"))
+            if bayar < total_belanja:
+                kekurangan = total_belanja - bayar
+                print(f"⚠️ Aduh bos, uangnya kurang Rp{kekurangan:,} nih!")
+            else:
+                kembalian = bayar - total_belanja
+                print(f"🎁 KEMBALIAN CIHUY: Rp{kembalian:,}")
+                break
+        except ValueError:
+            print("❌ Inputnya harus angka ya!")
+
+    print("\n✨ Terima kasih sudah mampir di Kasir Cihuy! Datang lagi ya! ✨\n")
+
+# Jalankan programnya!
+kasir_cihuy()
